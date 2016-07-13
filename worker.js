@@ -46,7 +46,7 @@ pg.connect(process.env.DATABASE_URL+'?ssl=true', function(err, client, done) {
                 campaigns.forEach(function(campaign){
                   if (tweet.text.toLowerCase().indexOf(campaign.hashtag__c.toLowerCase()) !== -1) {
                     console.log('Inserting: ', tweet.id_str, contacts[tweet.user.screen_name].sfid, campaign.sfid, tweet.text);
-                    var insert = 'INSERT INTO salesforce.tweet__c(name, contact__c, campaign__c, text__c) '+
+                    var insert = 'INSERT INTO salesforcetwitter.tweet__c(name, contact__c, campaign__c, text__c) '+
                                  'VALUES($1, $2, $3, $4)';
                     client.query(insert, [tweet.id_str, contacts[tweet.user.screen_name].sfid, campaign.sfid, tweet.text], function(err, result) {
                       if(err) {
