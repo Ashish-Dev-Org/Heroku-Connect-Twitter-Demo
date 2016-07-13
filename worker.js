@@ -14,7 +14,7 @@ pg.connect(process.env.DATABASE_URL+'?ssl=true', function(err, client, done) {
     process.exit(1);
   }
   client.query('SELECT twitter_handle__c, sfid '+
-               'FROM salesforce.contact '+
+               'FROM salesforcetwitter.contact '+
                'WHERE contact.twitter_handle__c IS NOT NULL', function(err, result) {
     if (err) { 
       console.error(err);
@@ -26,7 +26,7 @@ pg.connect(process.env.DATABASE_URL+'?ssl=true', function(err, client, done) {
       console.log('contacts :', contacts);
 
       client.query('SELECT hashtag__c, sfid '+
-                   'FROM salesforce.campaign '+
+                   'FROM salesforcetwitter.campaign '+
                    'WHERE campaign.hashtag__c IS NOT NULL', function(err, result) {
         if (err) { 
           console.error(err);
